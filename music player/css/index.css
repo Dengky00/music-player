@@ -1,0 +1,249 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.bg {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    filter: blur(6px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#root {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.player {
+    position: relative;
+    height: 100vh;
+}
+
+/* 背景图片 */
+.cover {
+    /* background-image: url(./assets/真的吗.jpg); */
+    /* 绝对定位到最底层，因为div没有内容只有背景默认不显示，
+    再用上下左右都为0撑开铺满 */
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cover::after {
+    content: '';
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/* 面板 */
+.panel {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 24px;
+    color: white;
+    padding: 30px;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 45px;
+    height: 150px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.author {
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+/* 进度条 */
+.bar-container {
+    height: 6px;
+    background-color: darkgray;
+    border-radius: 3px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.bar {
+    width: 0%;
+    height: 100%;
+    background-color: white;
+    border-radius: 3px;
+    position: relative;
+    /* transition: all 1s linear; */
+}
+
+.circle {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    top: -5px;
+    right: -8px;
+}
+
+/* .bar::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    top: -5px;
+    right: -8px;
+} */
+
+.times {
+    display: flex;
+    margin-top: 5px;
+    font-size: 12px;
+    justify-content: space-between;
+}
+
+/* 按钮 */
+.control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.iconpark-icon {
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
+.iconpark-icon:hover {
+    opacity: 0.7;
+    transition: all .3s;
+}
+
+.play,
+.pause-one {
+    width: 3em;
+    height: 3em;
+}
+
+.hidden {
+    display: none;
+}
+
+.mode .iconpark-icon {
+    display: none;
+}
+
+.mode .iconpark-icon.appear {
+    display: block;
+}
+
+
+
+/* 歌曲列表 */
+.list {
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 60vh;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    color: rgb(212, 206, 206);
+    /* box-shadow: 0 0 4px 4px rgba(255, 255, 255, 0.7); */
+    transform: translateY(-100%);
+    border-radius: 16px;
+    transition: all .5s;
+}
+
+.list ul {
+    margin: 0;
+    padding: 0;
+}
+
+.list li {
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 1px;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 16px;
+}
+
+.list li:hover {
+    opacity: 0.8;
+}
+
+.list.show {
+    display: block;
+    transform: translate(0);
+}
+
+li span {
+    display: flex;
+    margin-left: 10px;
+    display: none;
+}
+
+.iconpark-icon.acoustic {
+    width: 1em;
+    height: 1em;
+}
+
+li.active span {
+    display: block;
+}
+
+/* 媒体查询适配PC */
+@media (min-width:800px) {
+    #root {
+        width: 800px;
+        height: 500px;
+        margin: 60px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid rgb(255, 0, 0); */
+    }
+
+    .player {
+        width: 50%;
+        height: 100%;
+        border-radius: 16px;
+        /* border: 1px solid greenyellow; */
+        overflow: hidden;
+        box-shadow: 0 0 4px white;
+    }
+
+    .list {
+        width: 50%;
+        position: static;
+        transform: translateY(0);
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 4px white;
+        display: none;
+    }
+}
